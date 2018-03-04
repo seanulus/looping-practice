@@ -1,33 +1,30 @@
 $(document).ready(function() {
+
   $("#lists").submit(function(event) {
-    debugger
-    var item1 = $('input#item1').val();
-    var item2 = $('input#item2').val();
-    var item3 = $('input#item3').val();
-    var item4 = $('input#item4').val();
-    var item5 = $('input#item5').val();
-    var groceryArray = [item1, item2, item3, item4, item5];
 
-    var specialArray = [];
-
-    specialArray.push(item1, item2, item3, item4, item5)
+    var unformatArray = [];
+    var formatArray = [];
+      $('#lists input').map(
+        function(){
+          unformatArray.push( $(this).val() )
+      });
 
 
-    groceryArray.sort();
+      unformatArray.map(function(i){
+        //console.log(i.toUpperCase());
+        formatArray.push(i.toUpperCase());
+      });
 
+      formatArray = formatArray.sort();
 
-        // groceryArray.forEach(function(list) {
-    //   var userInput = $("input#" + list).val();
-    //   groceryArray.push(userInput);
-    // });
+       console.log(formatArray);
 
-    //var newArray = [".item1", ".item2", ".item3", ".item4", ".item5"];
+    formatArray.map(function(jazz) {
+      $(".finish").append("<li>" + jazz +"</li>")
+    });
 
-    $("#groceries").hide();
+    $("#lists").hide();
     $("#showList").show();
-
-    alert(groceryArray);
-    alert(specialArray);
 
     event.preventDefault();
   });
